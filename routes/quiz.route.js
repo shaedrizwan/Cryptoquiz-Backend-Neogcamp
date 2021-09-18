@@ -49,7 +49,7 @@ router.route('/addToLeaderboard')
             updatedLeaderboard = await quiz.save()
             updatedQuiz = await Quiz.findById(quizId)
             board = updatedQuiz.leaderboard.sort((a,b)=>b.score - a.score)
-            rank = board.findIndex(a => String(a.user) === userId && String(a.score) === score)
+            rank = board.findIndex(a => String(a.user) === userId && a.score === score)
             res.json({success:true,rank})
         }catch(err){
             res.json({success:false,error:err.message})
