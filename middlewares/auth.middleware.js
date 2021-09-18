@@ -12,13 +12,13 @@ const checkAuth = async(req,res,next) =>{
                 req.user = user
                 return next()
             }else{
-                return res.json({success:false,message:"Authentication failed: Incorrect password"})
+                return res.status(403).json({success:false,message:"Authentication failed: Incorrect password"})
             }
         }else{
-            return res.json({success:false,message:"User does not exist"})
+            return res.status(404).json({success:false,message:"User does not exist"})
         }
     }catch(err){
-        return res.json({success:false,error:err.message})
+        return res.status(500).json({success:false,error:err.message})
     }
 }
 
@@ -29,7 +29,7 @@ const verifyAuth = (req,res,next)=>{
         req.user = decoded.userId
         return next()
     }catch(err){
-        return res.json({success:false,message:"Token not valid! Please login again"})
+        return res.status(401).json({success:false,message:"Token not valid! Please login again"})
     }
 }
 

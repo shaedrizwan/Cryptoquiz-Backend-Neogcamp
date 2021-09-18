@@ -33,8 +33,5 @@ router.route('/login')
         const token = jwt.sign({userId:user._id},process.env.TOKEN_SECRET,{expiresIn: '24h'})
         res.json({success:true,message:"Login successful",token})
     })
-    .get((req,res)=>{
-        res.send("Login route")
-    })
 
 module.exports = router
