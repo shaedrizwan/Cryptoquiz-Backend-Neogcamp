@@ -22,7 +22,7 @@ router.route('/signup')
             addedUser = await newUser.save()
             res.json({success:true,newUser:newUser.email})
         }catch(err){
-            res.json({success:false,error:err.message})
+            res.status(400).json({success:false,error:err.message})
         }
     })
 
